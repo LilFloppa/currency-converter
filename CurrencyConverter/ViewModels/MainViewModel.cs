@@ -2,7 +2,6 @@
 using CurrencyConverter.Services;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace CurrencyConverter.ViewModels
 {
@@ -80,8 +79,6 @@ namespace CurrencyConverter.ViewModels
         public MainViewModel(List<Currency> currencyList)
         {
             CurrencyList = currencyList;
-            FromCurrency = CurrencyList.Find(cur => cur.CharCode == "RUB");
-            ToCurrency = CurrencyList.Find(cur => cur.CharCode == "USD");
         }
 
         private void Convert() => ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);

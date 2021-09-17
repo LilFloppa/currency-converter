@@ -1,7 +1,8 @@
-﻿using CurrencyConverter.Services;
+﻿using CurrencyConverter.Models;
 using CurrencyConverter.ViewModels;
-using Windows.UI.Xaml;
+using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
 
@@ -15,13 +16,17 @@ namespace CurrencyConverter
         public MainPage()
         {
             this.InitializeComponent();
-            DataContext = new MainViewModel(new CurrencyService());
-            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.Navigate(typeof(CurrencyListPage), new CurrencyListViewModel((MainViewModel)DataContext));
+            base.OnNavigatedTo(e);
+
+            var vm = new MainViewModel((List<Currency>)e.Parameter);
+            DataContext = vm;
+
+            vm.FromCurrency = vm.CurrencyList.Find(cur => cur.CharCode == "USD");
+            vm.ToCurrency = vm.CurrencyList.Find(cur => cur.CharCode == "GBP");
         }
     }
 }

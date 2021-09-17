@@ -5,9 +5,13 @@
     xmlns:local="using:CurrencyConverter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:CurrencyConverter.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <converters:CurrencyToStringConverter x:Key="CurrencyToStringConverter"/>
+    </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -29,9 +33,9 @@
         <TextBox Grid.Row="1" Grid.Column="0" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20"></TextBox>
         <TextBox Grid.Row="1" Grid.Column="2" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20" IsReadOnly="true"></TextBox>
 
-        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="RUB" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="{Binding FromCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Image Grid.Row="2" Grid.Column="1" Source="Images/Arrows.png" Width="50"></Image>
-        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="USD" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="{Binding ToCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
         <Button Grid.Row="3" Grid.Column="0" Background="#33FFFFFF" HorizontalAlignment="Center">
             <TextBlock FontSize="25" TextWrapping="Wrap">Изменить валюту</TextBlock>
