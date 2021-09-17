@@ -126,6 +126,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\CurrencyConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CurrencyService.cs" />
     <Compile Include="Services\ICurrencyService.cs" />
