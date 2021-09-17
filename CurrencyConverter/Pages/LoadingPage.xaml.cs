@@ -1,10 +1,5 @@
-﻿using CurrencyConverter.Models;
-using CurrencyConverter.Services;
-using CurrencyConverter.ViewModels;
+﻿using CurrencyConverter.Services;
 using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 

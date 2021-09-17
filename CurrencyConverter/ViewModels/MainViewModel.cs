@@ -9,8 +9,6 @@ namespace CurrencyConverter.ViewModels
     {
         private enum ChangeSource { None, ViewModel }
 
-        private readonly ICurrencyService currencyService;
-
         public List<Currency> CurrencyList { get; set; }
 
         public Currency FromCurrency
@@ -19,6 +17,7 @@ namespace CurrencyConverter.ViewModels
             set
             {
                 fromCurrency = value;
+                Convert(ChangeSource.ViewModel);
                 OnPropertyChanged("FromCurrency");
             }
         }
@@ -30,6 +29,7 @@ namespace CurrencyConverter.ViewModels
             set
             {
                 toCurrency = value;
+                Convert(ChangeSource.ViewModel);
                 OnPropertyChanged("ToCurrency");
             }
         }
@@ -44,11 +44,8 @@ namespace CurrencyConverter.ViewModels
                 fromValue = value;
 
                 if (changeSource != ChangeSource.ViewModel)
-                {
-                    changeSource = ChangeSource.ViewModel;
-                    Convert();
-                    changeSource = ChangeSource.None;
-                }
+                    Convert(ChangeSource.ViewModel);
+
                 OnPropertyChanged("FromValue");
             }
         }
@@ -61,11 +58,8 @@ namespace CurrencyConverter.ViewModels
             {
                 toValue = value;
                 if (changeSource != ChangeSource.ViewModel)
-                {
-                    changeSource = ChangeSource.ViewModel;
-                    ConvertBack();
-                    changeSource = ChangeSource.None;
-                }
+                    ConvertBack(ChangeSource.ViewModel);
+
                 OnPropertyChanged("ToValue");
             }
         }
@@ -81,8 +75,20 @@ namespace CurrencyConverter.ViewModels
             CurrencyList = currencyList;
         }
 
-        private void Convert() => ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);
-        private void ConvertBack() => FromValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, ToValue);
+        private void Convert(ChangeSource source)
+        {
+            changeSource = source;
+            ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);
+            changeSource = ChangeSource.None;
+        }
+
+        private void ConvertBack(ChangeSource source)
+        {
+            changeSource = source;
+            FromValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, ToValue);
+            changeSource = ChangeSource.None;
+        }
+
         private void OnPropertyChanged(string propertyName = "")
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
