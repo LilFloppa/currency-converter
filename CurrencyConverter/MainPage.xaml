@@ -11,14 +11,34 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Конвертер валют" FontSize="30" HorizontalAlignment="Center" />
-        <Button Click="Button_Click">Choose Currency</Button>
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#FFE6E6E6">
+            <TextBlock Text="Конвертер валют" FontSize="30" HorizontalAlignment="Center" />
+        </Border>
+
+        <TextBox Grid.Row="1" Grid.Column="0" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="2" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20" IsReadOnly="true"></TextBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="RUB" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <Image Grid.Row="2" Grid.Column="1" Source="Images/Arrows.png" Width="50"></Image>
+        <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="USD" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
+        <Button Grid.Row="3" Grid.Column="0" Background="#33FFFFFF" HorizontalAlignment="Center">
+            <TextBlock FontSize="25" TextWrapping="Wrap">Изменить валюту</TextBlock>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" Background="#33FFFFFF" HorizontalAlignment="Center">
+            <TextBlock FontSize="25" TextWrapping="Wrap">Изменить валюту</TextBlock>
+        </Button>
+
     </Grid>
 </Page>
