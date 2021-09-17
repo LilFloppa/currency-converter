@@ -18,11 +18,19 @@ namespace CurrencyConverter.Services
 
             JsonDocument json = JsonDocument.Parse(content);
 
-            List<Currency> currencies = new List<Currency>();
+            List<Currency> currencyList = new List<Currency>();
             foreach (var valute in json.RootElement.GetProperty("Valute").EnumerateObject())
-                currencies.Add(JsonSerializer.Deserialize<Currency>(valute.Value.ToString()));
+                currencyList.Add(JsonSerializer.Deserialize<Currency>(valute.Value.ToString()));
 
-            return currencies;
+            currencyList.Add(new Currency
+            {
+                CharCode = "RUB",
+                Name = "Рубль",
+                Value = 1.0,
+                Nominal = 1
+            });
+
+            return currencyList;
         }
     }
 }
