@@ -8,11 +8,13 @@ namespace CurrencyConverter.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        private enum ChangeSource { None, ViewModel }
+
         private readonly ICurrencyService currencyService;
 
         public List<Currency> CurrencyList { get; set; }
 
-        public Currency FromCurrency 
+        public Currency FromCurrency
         {
             get => fromCurrency;
             set
@@ -35,12 +37,19 @@ namespace CurrencyConverter.ViewModels
 
         private Currency toCurrency;
 
-        public double FromValue 
+        public double FromValue
         {
             get => fromValue;
             set
             {
                 fromValue = value;
+
+                if (changeSource != ChangeSource.ViewModel)
+                {
+                    changeSource = ChangeSource.ViewModel;
+                    Convert();
+                    changeSource = ChangeSource.None;
+                }
                 OnPropertyChanged("FromValue");
             }
         }
@@ -52,39 +61,31 @@ namespace CurrencyConverter.ViewModels
             set
             {
                 toValue = value;
+                if (changeSource != ChangeSource.ViewModel)
+                {
+                    changeSource = ChangeSource.ViewModel;
+                    ConvertBack();
+                    changeSource = ChangeSource.None;
+                }
                 OnPropertyChanged("ToValue");
             }
         }
 
         private double toValue = 0.0;
 
+        private ChangeSource changeSource;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public MainViewModel(ICurrencyService currencyService)
+        public MainViewModel(List<Currency> currencyList)
         {
-            this.currencyService = currencyService;
-            Task.Run(() => Intiailize());
-        }
-
-        private async Task Intiailize()
-        {
-            CurrencyList = await currencyService.GetCurrencyListAsync();
-
-            Currency rub = new Currency
-            {
-                CharCode = "RUB",
-                Name = "Рубль",
-                Value = 1.0,
-                Nominal = 1
-            };
-
-            CurrencyList.Add(rub);
-            FromCurrency = rub;
+            CurrencyList = currencyList;
+            FromCurrency = CurrencyList.Find(cur => cur.CharCode == "RUB");
             ToCurrency = CurrencyList.Find(cur => cur.CharCode == "USD");
         }
 
-        private void Convert() => ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, fromValue);
-
+        private void Convert() => ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);
+        private void ConvertBack() => FromValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, ToValue);
         private void OnPropertyChanged(string propertyName = "")
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
