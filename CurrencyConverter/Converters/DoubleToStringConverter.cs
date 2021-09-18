@@ -10,7 +10,7 @@ namespace CurrencyConverter.Converters
         {
             double doubleValue = (double)value;
 
-            return doubleValue.ToString();
+            return doubleValue.ToString("F3");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
