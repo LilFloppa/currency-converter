@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Converters\CurrencyToStringConverter.cs" />
     <Compile Include="Converters\DoubleToStringConverter.cs" />
+    <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Pages\ChangeCurrencyPage.xaml.cs">
       <DependentUpon>ChangeCurrencyPage.xaml</DependentUpon>
     </Compile>
@@ -145,7 +146,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Arrows.png" />
+    <Content Include="Assets\Arrows.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

@@ -20,6 +20,10 @@
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="Margin" Value="10,0,10,20"/>
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="#33FFFFFF" />
+            </Style>
+
 
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Light">
@@ -51,13 +55,15 @@
         <controls:DoubleTextBox Grid.Row="1" Grid.Column="2" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DoubleToStringConverter}}" />
 
         <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="{Binding FromCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <Image Grid.Row="2" Grid.Column="1" Source="Assets/Arrows.png" Width="50"></Image>
+        <Button Grid.Row="2" Grid.Column="1" Command="{Binding SwapCurrencies}">
+            <Image Source="/Assets/Arrows.png" Width="50"/>
+        </Button>
         <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="{Binding ToCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
-        <Button x:Name="ChangeFromCurrencyButton" Grid.Row="3" Grid.Column="0" Background="#33FFFFFF" HorizontalAlignment="Center" Click="OnChangeFromCurrencyButtonClick">
+        <Button x:Name="ChangeFromCurrencyButton" Grid.Row="3" Grid.Column="0"  HorizontalAlignment="Center" Click="OnChangeFromCurrencyButtonClick">
             <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3" TextAlignment="Center">Изменить валюту</TextBlock>
         </Button>
-        <Button x:Name="ChangeToCurrencyButton" Grid.Row="3" Grid.Column="2" Background="#33FFFFFF" HorizontalAlignment="Center" Click="OnChangeToCurrencyButtonClick">
+        <Button x:Name="ChangeToCurrencyButton" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" Click="OnChangeToCurrencyButtonClick">
             <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3" TextAlignment="Center">Изменить валюту</TextBlock>
         </Button>
 

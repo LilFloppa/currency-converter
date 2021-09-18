@@ -29,7 +29,7 @@
             <TextBlock Text="Выбор валют" FontSize="30" HorizontalAlignment="Center" />
         </Border>
 
-        <ListView Grid.Row="1" ItemsSource="{Binding CurrencyList}" SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" Background="#FFE6E6E6" >
+        <ListView Grid.Row="1" ItemsSource="{Binding CurrencyList}" SelectedItem="{Binding SelectedCurrency, Mode=TwoWay}" Background="#FFE6E6E6" BorderThickness="0,2,0,2" BorderBrush="LightGray">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

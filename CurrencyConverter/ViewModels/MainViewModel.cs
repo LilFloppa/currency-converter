@@ -1,4 +1,5 @@
 ﻿using CurrencyConverter.Models;
+using CurrencyConverter.MVVM;
 using CurrencyConverter.Services;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,7 @@ namespace CurrencyConverter.ViewModels
 
         private Currency toCurrency;
 
+        public RelayCommand SwapCurrencies { get; set; }
         public double FromValue
         {
             get => fromValue;
@@ -52,7 +54,7 @@ namespace CurrencyConverter.ViewModels
             }
         }
 
-        private double fromValue = 0.0;
+        private double fromValue;
         public double ToValue
         {
             get => toValue;
@@ -66,7 +68,7 @@ namespace CurrencyConverter.ViewModels
             }
         }
 
-        private double toValue = 0.0;
+        private double toValue;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -76,6 +78,9 @@ namespace CurrencyConverter.ViewModels
 
             FromCurrency = CurrencyList.Find(cur => cur.CharCode == "RUB");
             ToCurrency = CurrencyList.Find(cur => cur.CharCode == "USD");
+            FromValue = 1.0;
+
+            SwapCurrencies = new RelayCommand(() => (FromCurrency, ToCurrency) = (ToCurrency, FromCurrency));
         }
 
         private void Convert(ChangeSource source)
