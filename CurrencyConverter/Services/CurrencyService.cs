@@ -1,5 +1,6 @@
 ﻿using CurrencyConverter.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -25,12 +26,12 @@ namespace CurrencyConverter.Services
             currencyList.Add(new Currency
             {
                 CharCode = "RUB",
-                Name = "Рубль",
+                Name = "Российский рубль",
                 Value = 1.0,
                 Nominal = 1
             });
 
-            return currencyList;
+            return currencyList.OrderBy(c => c.Name).ToList();
         }
     }
 }

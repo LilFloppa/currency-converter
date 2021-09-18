@@ -6,16 +6,12 @@ namespace CurrencyConverter.ViewModels
 {
     public class CurrencyListViewModel
     {
-        MainViewModel parentVM;
-
         public List<Currency> CurrencyList { get; set; }
         public Currency SelectedCurrency { get; set; }
-        public CurrencyListViewModel(MainViewModel parentVM)
+        public CurrencyListViewModel(List<Currency> currencyList, Currency selectedCurrency)
         {
-            this.parentVM = parentVM;
-
-            CurrencyList = parentVM.CurrencyList;
-            SelectedCurrency = CurrencyList[0];
+            CurrencyList = currencyList;
+            SelectedCurrency = selectedCurrency;
         }
     }
 }

@@ -25,5 +25,16 @@ namespace CurrencyConverter.Pages
             var vm = new MainViewModel((List<Currency>)e.Parameter);
             DataContext = vm;
         }
+
+        private void OnChangeFromCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            MainViewModel vm = (MainViewModel)DataContext;
+            Frame.Navigate(typeof(CurrencyListPage), new CurrencyListViewModel(vm.CurrencyList, vm.FromCurrency));
+        }
+
+        private void OnChangeToCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
+        }
     }
 }
