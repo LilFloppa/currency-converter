@@ -80,16 +80,22 @@ namespace CurrencyConverter.ViewModels
 
         private void Convert(ChangeSource source)
         {
-            changeSource = source;
-            ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);
-            changeSource = ChangeSource.None;
+            if (fromCurrency != null && toCurrency != null)
+            {
+                changeSource = source;
+                ToValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, FromValue);
+                changeSource = ChangeSource.None;
+            }
         }
 
         private void ConvertBack(ChangeSource source)
         {
-            changeSource = source;
-            FromValue = Models.CurrencyConverter.Convert(fromCurrency, toCurrency, ToValue);
-            changeSource = ChangeSource.None;
+            if (fromCurrency != null && toCurrency != null)
+            {
+                changeSource = source;
+                FromValue = Models.CurrencyConverter.Convert(toCurrency, fromCurrency, ToValue);
+                changeSource = ChangeSource.None;
+            }
         }
 
         private void OnPropertyChanged(string propertyName = "")

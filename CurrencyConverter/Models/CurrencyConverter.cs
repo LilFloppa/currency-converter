@@ -4,7 +4,7 @@
     {
         public static double Convert(Currency fromCurrency, Currency toCurrency, double value)
         {
-            return value;
+            return value * fromCurrency.Value / toCurrency.Value;
         }
     }
 }
