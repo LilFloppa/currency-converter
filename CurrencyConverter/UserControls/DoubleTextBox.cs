@@ -15,6 +15,7 @@ namespace CurrencyConverter.UserControls
         private void OnBeforeTextChanging(TextBox sender, TextBoxBeforeTextChangingEventArgs args)
         {
             args.Cancel = 
+                args.NewText[0] == '.' || args.NewText[0] == ',' ||
                 args.NewText.Any(c => !char.IsDigit(c) && c != '.' && c != ',') || 
                 args.NewText.Count(c => c == '.' || c == ',') > 1;
         }
