@@ -28,13 +28,13 @@ namespace CurrencyConverter.Pages
         private void OnChangeFromCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             MainViewModel vm = (MainViewModel)DataContext;
-            Frame.Navigate(typeof(ChangeCurrencyPage), new CurrencyListViewModel(vm, "from"));
+            Frame.Navigate(typeof(ChangeCurrencyPage), new ChangeCurrencyViewModel(vm.CurrencyList, vm.FromCurrency, (c) => vm.FromCurrency = c));
         }
 
         private void OnChangeToCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             MainViewModel vm = (MainViewModel)DataContext;
-            Frame.Navigate(typeof(ChangeCurrencyPage), new CurrencyListViewModel(vm, "to"));
+            Frame.Navigate(typeof(ChangeCurrencyPage), new ChangeCurrencyViewModel(vm.CurrencyList, vm.ToCurrency, (c) => vm.ToCurrency = c));
         }
     }
 }

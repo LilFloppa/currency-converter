@@ -20,7 +20,7 @@ namespace CurrencyConverter.Pages
         {
             base.OnNavigatedTo(e);
             
-            DataContext = (CurrencyListViewModel)e.Parameter;
+            DataContext = (ChangeCurrencyViewModel)e.Parameter;
         }
 
         private void OnReturnButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)

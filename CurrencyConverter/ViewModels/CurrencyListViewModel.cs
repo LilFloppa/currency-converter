@@ -1,31 +1,31 @@
 ﻿
 using CurrencyConverter.Models;
+using System;
 using System.Collections.Generic;
 
 namespace CurrencyConverter.ViewModels
 {
 
-    public class CurrencyListViewModel
+    public class ChangeCurrencyViewModel
     {
-        MainViewModel parent;
-        string direction;
+        Action<Currency> itemSelectedAction;
         public List<Currency> CurrencyList { get; set; }
         public Currency SelectedCurrency 
         {
-            get => direction == "from" ? parent.FromCurrency : parent.ToCurrency;
+            get => selectedCurrency;
             set
             {
-                if (direction == "from")
-                    parent.FromCurrency = value;
-                else
-                    parent.ToCurrency = value;
+                selectedCurrency = value;
+                itemSelectedAction(value);
             }
         }
-        public CurrencyListViewModel(MainViewModel parent, string direction)
+
+        private Currency selectedCurrency;
+        public ChangeCurrencyViewModel(List<Currency> currencyList, Currency currency, Action<Currency> itemSelectedAction)
         {
-            this.parent = parent;
-            this.direction = direction;
-            CurrencyList = parent.CurrencyList;
+            CurrencyList = currencyList;
+            selectedCurrency = currency;
+            this.itemSelectedAction = itemSelectedAction;
 
         }
     }
