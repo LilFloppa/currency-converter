@@ -9,6 +9,8 @@ namespace CurrencyConverter.ViewModels
     {
         private enum ChangeSource { None, ViewModel }
 
+        private ChangeSource changeSource;
+
         public List<Currency> CurrencyList { get; set; }
 
         public Currency FromCurrency
@@ -66,13 +68,14 @@ namespace CurrencyConverter.ViewModels
 
         private double toValue = 0.0;
 
-        private ChangeSource changeSource;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainViewModel(List<Currency> currencyList)
         {
             CurrencyList = currencyList;
+
+            FromCurrency = CurrencyList.Find(cur => cur.CharCode == "RUB");
+            ToCurrency = CurrencyList.Find(cur => cur.CharCode == "USD");
         }
 
         private void Convert(ChangeSource source)
@@ -91,7 +94,8 @@ namespace CurrencyConverter.ViewModels
 
         private void OnPropertyChanged(string propertyName = "")
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

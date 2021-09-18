@@ -24,9 +24,6 @@ namespace CurrencyConverter.Pages
 
             var vm = new MainViewModel((List<Currency>)e.Parameter);
             DataContext = vm;
-
-            vm.FromCurrency = vm.CurrencyList.Find(cur => cur.CharCode == "USD");
-            vm.ToCurrency = vm.CurrencyList.Find(cur => cur.CharCode == "GBP");
         }
     }
 }
