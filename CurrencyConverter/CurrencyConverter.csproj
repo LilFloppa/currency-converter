@@ -121,8 +121,8 @@
     </Compile>
     <Compile Include="Converters\CurrencyToStringConverter.cs" />
     <Compile Include="Converters\DoubleToStringConverter.cs" />
-    <Compile Include="Pages\CurrencyListPage.xaml.cs">
-      <DependentUpon>CurrencyListPage.xaml</DependentUpon>
+    <Compile Include="Pages\ChangeCurrencyPage.xaml.cs">
+      <DependentUpon>ChangeCurrencyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -159,7 +159,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Pages\CurrencyListPage.xaml">
+    <Page Include="Pages\ChangeCurrencyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

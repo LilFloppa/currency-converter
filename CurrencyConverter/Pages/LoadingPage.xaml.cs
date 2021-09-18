@@ -1,5 +1,8 @@
 ﻿using CurrencyConverter.Services;
+using CurrencyConverter.ViewModels;
 using System;
+using Windows.Foundation;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -25,7 +28,7 @@ namespace CurrencyConverter.Pages
 
             var currencyList = await currencyService.GetCurrencyListAsync();
 
-            Frame.Navigate(typeof(MainPage), currencyList);
+            Frame.Navigate(typeof(MainPage), new MainViewModel(currencyList));
         }
     }
 }

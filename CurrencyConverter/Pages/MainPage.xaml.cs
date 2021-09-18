@@ -22,19 +22,19 @@ namespace CurrencyConverter.Pages
         {
             base.OnNavigatedTo(e);
 
-            var vm = new MainViewModel((List<Currency>)e.Parameter);
-            DataContext = vm;
+            DataContext = (MainViewModel)e.Parameter;
         }
 
         private void OnChangeFromCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             MainViewModel vm = (MainViewModel)DataContext;
-            Frame.Navigate(typeof(CurrencyListPage), new CurrencyListViewModel(vm.CurrencyList, vm.FromCurrency));
+            Frame.Navigate(typeof(ChangeCurrencyPage), new CurrencyListViewModel(vm, "from"));
         }
 
         private void OnChangeToCurrencyButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            MainViewModel vm = (MainViewModel)DataContext;
+            Frame.Navigate(typeof(ChangeCurrencyPage), new CurrencyListViewModel(vm, "to"));
         }
     }
 }

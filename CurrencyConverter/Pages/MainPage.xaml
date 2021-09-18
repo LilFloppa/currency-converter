@@ -55,10 +55,10 @@
         <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="{Binding ToCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
         <Button x:Name="ChangeFromCurrencyButton" Grid.Row="3" Grid.Column="0" Background="#33FFFFFF" HorizontalAlignment="Center" Click="OnChangeFromCurrencyButtonClick">
-            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3">Изменить валюту</TextBlock>
+            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3" TextAlignment="Center">Изменить валюту</TextBlock>
         </Button>
         <Button x:Name="ChangeToCurrencyButton" Grid.Row="3" Grid.Column="2" Background="#33FFFFFF" HorizontalAlignment="Center" Click="OnChangeToCurrencyButtonClick">
-            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3">Изменить валюту</TextBlock>
+            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3" TextAlignment="Center">Изменить валюту</TextBlock>
         </Button>
 
     </Grid>

@@ -9,9 +9,9 @@ namespace CurrencyConverter.Pages
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class CurrencyListPage : Page
+    public sealed partial class ChangeCurrencyPage : Page
     {
-        public CurrencyListPage()
+        public ChangeCurrencyPage()
         {
             this.InitializeComponent();
         }
@@ -19,8 +19,13 @@ namespace CurrencyConverter.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
+            
             DataContext = (CurrencyListViewModel)e.Parameter;
+        }
+
+        private void OnReturnButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }
