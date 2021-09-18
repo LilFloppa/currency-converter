@@ -6,11 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:CurrencyConverter.Converters"
+    xmlns:controls="using:CurrencyConverter.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
         <converters:CurrencyToStringConverter x:Key="CurrencyToStringConverter"/>
+
+        <Style TargetType="controls:DoubleTextBox">
+            <Setter Property="BorderThickness" Value="0,0,0,2"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Margin" Value="10,0,10,20"/>
+        </Style>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,9 +37,9 @@
             <TextBlock Text="Конвертер валют" FontSize="30" HorizontalAlignment="Center" />
         </Border>
 
-        <TextBox Grid.Row="1" Grid.Column="0" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20"></TextBox>
-        <TextBox Grid.Row="1" Grid.Column="2" BorderThickness="0,0,0,2" FontSize="30" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,20" IsReadOnly="true"></TextBox>
-
+        <controls:DoubleTextBox Grid.Row="1" Grid.Column="0" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <controls:DoubleTextBox Grid.Row="1" Grid.Column="2" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        
         <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="{Binding FromCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <Image Grid.Row="2" Grid.Column="1" Source="Images/Arrows.png" Width="50"></Image>
         <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="{Binding ToCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
