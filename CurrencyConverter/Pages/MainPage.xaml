@@ -12,12 +12,15 @@
 
     <Page.Resources>
         <converters:CurrencyToStringConverter x:Key="CurrencyToStringConverter"/>
+        <converters:DoubleToStringConverter x:Key="DoubleToStringConverter" />
 
         <Style TargetType="controls:DoubleTextBox">
             <Setter Property="BorderThickness" Value="0,0,0,2"/>
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="Margin" Value="10,0,10,20"/>
         </Style>
+
+
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,18 +40,38 @@
             <TextBlock Text="Конвертер валют" FontSize="30" HorizontalAlignment="Center" />
         </Border>
 
-        <controls:DoubleTextBox Grid.Row="1" Grid.Column="0" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <controls:DoubleTextBox Grid.Row="1" Grid.Column="2" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <controls:DoubleTextBox Grid.Row="1" Grid.Column="0" Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DoubleToStringConverter}}" />
+        <controls:DoubleTextBox Grid.Row="1" Grid.Column="2" Text="{Binding ToValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DoubleToStringConverter}}" />
         
         <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="{Binding FromCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <Image Grid.Row="2" Grid.Column="1" Source="Images/Arrows.png" Width="50"></Image>
+        <Image Grid.Row="2" Grid.Column="1" Source="Assets/Arrows.png" Width="50"></Image>
         <TextBlock Grid.Row="2" Grid.Column="2" FontSize="30" Text="{Binding ToCurrency, Converter={StaticResource CurrencyToStringConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
 
         <Button Grid.Row="3" Grid.Column="0" Background="#33FFFFFF" HorizontalAlignment="Center">
-            <TextBlock FontSize="25" TextWrapping="Wrap">Изменить валюту</TextBlock>
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FFE6E6E6"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3">Изменить валюту</TextBlock>
         </Button>
         <Button Grid.Row="3" Grid.Column="2" Background="#33FFFFFF" HorizontalAlignment="Center">
-            <TextBlock FontSize="25" TextWrapping="Wrap">Изменить валюту</TextBlock>
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="Transparent"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FFE6E6E6"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+            <TextBlock FontSize="20" TextWrapping="Wrap" Padding="3,3,3,3">Изменить валюту</TextBlock>
         </Button>
 
     </Grid>
