@@ -1,10 +1,9 @@
 ﻿using CurrencyConverter.Services;
 using CurrencyConverter.ViewModels;
 using System;
-using Windows.Foundation;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Popups;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,9 +25,18 @@ namespace CurrencyConverter.Pages
         {
             base.OnNavigatedTo(e);
 
-            var currencyList = await currencyService.GetCurrencyListAsync();
+            try
+            {
+                var currencyList = await currencyService.GetCurrencyListAsync();
+                Frame.Navigate(typeof(MainPage), new MainViewModel(currencyList));
+            }
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog($"Failed to load currency data from the server. {ex.Message }");
+                await dialog.ShowAsync();
 
-            Frame.Navigate(typeof(MainPage), new MainViewModel(currencyList));
+                App.Current.Exit();
+            }
         }
     }
 }
