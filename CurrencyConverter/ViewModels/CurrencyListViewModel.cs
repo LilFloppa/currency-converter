@@ -26,7 +26,6 @@ namespace CurrencyConverter.ViewModels
             CurrencyList = currencyList;
             selectedCurrency = currency;
             this.itemSelectedAction = itemSelectedAction;
-
         }
     }
 }

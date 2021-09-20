@@ -16,7 +16,6 @@ namespace CurrencyConverter.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             string stringValue = (string)value;
-
             stringValue = stringValue.Replace('.', ',');
 
             return double.Parse(stringValue, NumberStyles.Any);
